@@ -34,6 +34,10 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
   return next();
 };
 
+app.get('/', (_req: Request, res: Response): Response => {
+  return res.status(200).json({ message: 'Hello World!' });
+})  ;
+
 app.post('/create-cookie', (req: Request, res: Response): Response => {
   const { user, rememberMe } = req.body;
   const expires = rememberMe ? THIRTY_DAYS_MS : ONE_DAY_MS
