@@ -58,10 +58,11 @@ app.post('/create-cookie', (req: Request, res: Response): Response => {
 });
 
 app.get('/delete-cookie', validateToken, (_req: Request, res: Response): Response => {
-  return res.clearCookie('token', {
+  return res.cookie('token', '', {
     httpOnly: true,
     secure: true,
     sameSite: 'none',
+    maxAge: 1,
   }).status(200).json({ message: 'Token deletado dos cookies!' });
 });
 
