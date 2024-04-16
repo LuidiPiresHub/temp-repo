@@ -7,10 +7,15 @@ dotenv.config();
 
 const app = express();
 const url = process.env.FRONTEND_URL || 'http://localhost:3000';
-// app.use(cors({ origin: url, credentials: true }));
-app.use(cors({ origin: '*' }));
+app.use(cors({ origin: url, credentials: true }));
+// app.use(cors({ origin: '*', credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
+
+app.use((_req: Request, res: Response, next: NextFunction) => {
+  res.header('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 
 const secret = 'secret';
 const ONE_DAY_MS = 24 * 60 * 60 * 1000;
@@ -37,7 +42,7 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
 
 app.get('/', (_req: Request, res: Response): Response => {
   return res.status(200).json({ message: 'Hello World!' });
-})  ;
+});
 
 app.post('/create-cookie', (req: Request, res: Response): Response => {
   const { user, rememberMe } = req.body;
