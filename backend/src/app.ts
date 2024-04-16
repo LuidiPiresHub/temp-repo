@@ -58,7 +58,11 @@ app.post('/create-cookie', (req: Request, res: Response): Response => {
 });
 
 app.get('/delete-cookie', validateToken, (_req: Request, res: Response): Response => {
-  return res.clearCookie('token').status(200).json({ message: 'Token deletado dos cookies!' });
+  return res.clearCookie('token', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+  }).status(200).json({ message: 'Token deletado dos cookies!' });
 });
 
 app.get('/checkout', validateToken, (_req: Request, res: Response): Response => {
