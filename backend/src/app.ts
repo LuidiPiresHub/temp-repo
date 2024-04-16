@@ -7,7 +7,8 @@ dotenv.config();
 
 const app = express();
 const url = process.env.FRONTEND_URL || 'http://localhost:3000';
-app.use(cors({ origin: url, credentials: true }));
+// app.use(cors({ origin: url, credentials: true }));
+app.use(cors({ origin: url }));
 app.use(express.json());
 app.use(cookieParser());
 
