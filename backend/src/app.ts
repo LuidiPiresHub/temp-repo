@@ -51,8 +51,8 @@ app.post('/create-cookie', (req: Request, res: Response): Response => {
 
   return res.cookie('token', token, {
     httpOnly: true,
-    secure: true,
-    sameSite: 'strict',
+    // secure: true,
+    // sameSite: 'strict',
     maxAge: expires,
   }).status(201).json({ message: 'Token salvo nos cookies!' });
 });
