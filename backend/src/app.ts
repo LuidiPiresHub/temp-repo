@@ -51,9 +51,9 @@ app.post('/create-cookie', (req: Request, res: Response): Response => {
 
   return res.cookie('token', token, {
     httpOnly: true,
-    // secure: true,
-    // sameSite: 'strict',
-    maxAge: expires,
+    secure: true,
+    sameSite: 'none',
+    // maxAge: expires,
   }).send();
 });
 
