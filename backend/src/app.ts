@@ -63,7 +63,7 @@ app.get('/delete-cookie', validateToken, (_req: Request, res: Response): Respons
     secure: true,
     sameSite: 'none',
     maxAge: 1,
-  }).status(200).json({ message: 'Token deletado dos cookies!' });
+  }).send();
 });
 
 app.get('/checkout', validateToken, (_req: Request, res: Response): Response => {
