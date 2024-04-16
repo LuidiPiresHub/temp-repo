@@ -40,13 +40,23 @@ export default function App() {
         console.error('Erro:', error);
       }
     }
-  }
+  };
+
+  const hello = async () => {
+    try {
+      const { data } = await api.get('/');
+      console.log(data);
+    } catch (error) {
+      console.error('Erro:', error);
+    }
+  };
 
   return (
     <>
       <button type='button' onClick={createCookie}>Criar Cookie</button>
       <button type='button' onClick={deleteCookie}>Deletar Cookie</button>
       <button type='button' onClick={checkout}>Checkout</button>
+      <button type='button' onClick={hello}>Hello</button>
     </>
   )
 }
