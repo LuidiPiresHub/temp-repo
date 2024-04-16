@@ -2,9 +2,12 @@ import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+const url = process.env.FRONTEND_URL || 'http://localhost:3000';
+app.use(cors({ origin: url, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
