@@ -2,14 +2,14 @@ import axios, { AxiosError } from 'axios';
 
 export default function App() {
   const api = axios.create({
-    baseURL: 'http://localhost:3001',
+    baseURL: import.meta.env.API_URL || 'http://localhost:3001',
     withCredentials: true
   });
 
   const createCookie = async () => {
     try {
       const info = { user: { name: 'user', value: 'John Doe' }, rememberMe: true };
-      const { data } = await api.post('http://localhost:3001/create-cookie', info);
+      const { data } = await api.post('/create-cookie', info);
       console.log(data);
     } catch (error) {
       console.error('Erro:', error);
@@ -18,7 +18,7 @@ export default function App() {
 
   const deleteCookie = async () => {
     try {
-      const { data } = await api.get('http://localhost:3001/delete-cookie');
+      const { data } = await api.get('/delete-cookie');
       console.log(data);
     } catch (error) {
       if ((error as AxiosError).response?.status === 401) {
@@ -31,7 +31,7 @@ export default function App() {
 
   const checkout = async () => {
     try {
-      const { data } = await api.get('http://localhost:3001/checkout');
+      const { data } = await api.get('/checkout');
       console.log(data);
     } catch (error) {
       if ((error as AxiosError).response?.status === 401) {
