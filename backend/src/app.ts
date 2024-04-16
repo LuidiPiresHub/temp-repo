@@ -58,12 +58,7 @@ app.post('/create-cookie', (req: Request, res: Response): Response => {
 });
 
 app.get('/delete-cookie', validateToken, (_req: Request, res: Response): Response => {
-  return res.cookie('token', '', {
-    httpOnly: true,
-    secure: true,
-    sameSite: 'none',
-    maxAge: 1,
-  }).send();
+  return res.clearCookie('token').send();
 });
 
 app.get('/checkout', validateToken, (_req: Request, res: Response): Response => {
