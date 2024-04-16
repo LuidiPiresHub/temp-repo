@@ -54,7 +54,7 @@ app.post('/create-cookie', (req: Request, res: Response): Response => {
     // secure: true,
     // sameSite: 'strict',
     maxAge: expires,
-  }).status(201).json({ message: 'Token salvo nos cookies!' });
+  }).send();
 });
 
 app.get('/delete-cookie', validateToken, (_req: Request, res: Response): Response => {
